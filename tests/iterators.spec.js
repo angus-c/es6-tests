@@ -1,14 +1,17 @@
 describe('iterators', () => {
-  const allIterables = [
+  const arrayLikeIterables = [
     [1,2,3],
+    'abc',
+    Array.from({a:4, b:5, c:8})
+  ];
+  const mapLikeIterables = [
     [1,2,3].keys(),
     [1,2,3].entries(),
-    'abc',
     new Map([[1, 'one'], [2, 'two']]),
-    new Set([1, 2, 2, 3])
-    // new WeakMap()
-    // document.body
+    new Set([1, 2, 2, 4])/*,
+    document.body */
   ];
+  const allIterables = arrayLikeIterables.concat(mapLikeIterables);
 
   describe('Symbol.iterator', () => {
     const s = Symbol.iterator;
@@ -24,17 +27,6 @@ describe('iterators', () => {
   });
 
   describe('next()', () => {
-    const arrayLikeIterables = [
-      [1,2,3],
-      'abc',
-    ];
-    const mapLikeIterables = [
-      [1,2,3].keys(),
-      [1,2,3].entries(),
-      new Map([[1, 'one'], [2, 'two']]),
-      new Set([1, 2, 2, 4])/*,
-      document.body */
-    ];
     let iterator, next, count;
     it('works with for arrayLikeIterables', () => {
       arrayLikeIterables.forEach((iterable) => {
@@ -67,17 +59,6 @@ describe('iterators', () => {
   });
 
   describe('for-of', () => {
-    const arrayLikeIterables = [
-      [1,2,3],
-      'abc',
-    ];
-    const mapLikeIterables = [
-      [1,2,3].keys(),
-      [1,2,3].entries(),
-      new Map([[1, 'one'], [2, 'two']]),
-      new Set([1, 2, 2, 4])/*,
-      document.body */
-    ];
     let count;
     it('works for arrayLikeIterables', () => {
       arrayLikeIterables.forEach((iterable) => {

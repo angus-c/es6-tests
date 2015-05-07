@@ -119,5 +119,12 @@ describe('Promises', () => {
       })
     });
   });
+
+  describe('Promises.all', () => {
+  });
+
+  describe('Promises.race', () => {
+  });
+
 });
 
