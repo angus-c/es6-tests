@@ -32,6 +32,14 @@ describe('let and const', () => {
         assert.equal(b, 13);
       }
     });
+
+    it.skip('(let) is not hoisted', () => {
+      var fn = () => {
+        a = 3;
+        let a;
+      }
+      assert.throws(fn, Error);
+    });
   });
 
   describe('const and immutability', () => {
