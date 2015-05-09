@@ -1,5 +1,13 @@
 describe('Promises', () => {
-  // http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.assign
+  function getPromise(success) {
+    return new Promise((resolve, reject) => {
+      setTimeout(
+        success ? resolve('success'): reject('failure'),
+        (Math.random()+1)*1000
+      );
+    });
+  }
+
   describe('data types', () => {
     it('is a constructor', () => {
       assert.equal(typeof Promise, 'function');
@@ -34,15 +42,6 @@ describe('Promises', () => {
   });
 
   describe('resolve and reject', () => {
-    function getPromise(success) {
-      return new Promise((resolve, reject) => {
-        setTimeout(
-          success ? resolve('success'): reject('failure'),
-          1000
-        );
-      });
-    }
-
     it('calls resolve on success', (done) => {
       const p = getPromise(true).then((msg)=>{
         assert.equal(msg, 'success');
@@ -120,7 +119,16 @@ describe('Promises', () => {
     });
   });
 
+  describe('chained `thens`', () => {
+  });
+
   describe('Promises.all', () => {
+    let r;
+    Promise.all(['a', 'b', 'c']).then((arr) => {
+      r = arr.map(t=>t+'1')
+      assert.sameMembers(r, ['a1', 'b1', 'c1']);
+    });
+    assert.isUndefined(r);
   });
 
   describe('Promises.race', () => {

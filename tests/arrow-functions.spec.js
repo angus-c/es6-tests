@@ -1,4 +1,4 @@
-https://people.mozilla.org/~jorendorff/es6-draft.html#sec-arrow-function-definitions
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-arrow-function-definitions
 describe('arrow functions', () => {
   let fn;
   describe('braces and return statement', () => {
