@@ -101,6 +101,27 @@ describe('generators', () => {
       assert.equal(x, -5);
     });
   });
+
+  describe('for...of over generators', () => {
+    it('iterates over the generator', () => {
+      let x = 0;
+      const g = function* () {
+        while(true) {
+          x++;
+          yield x;
+        }
+      };
+
+      let tally = 0;
+      for (let val of g()) {
+        if (val > 5) {
+          break;
+        }
+        tally += val;
+      }
+      assert.equal(tally, 1+2+3+4+5);
+    });
+  });
 });
 
 
