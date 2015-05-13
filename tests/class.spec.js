@@ -2,6 +2,7 @@ describe('class', () => {
 
   class EmptyClass {};
   class BasicClass {
+    static s() {return this}
     a() { return this }
     b() {}
   }
@@ -39,31 +40,35 @@ describe('class', () => {
     beforeEach(() => {
       SuperClass  = class {
         constructor(n) {
-          this.x += n;
+          this.x = n;
         }
         c() {}
-        d() {super.d()}
+        d() {}
+        e() {}
       }
       SubClass = class extends SuperClass{
         constructor(n) {
           super(n);
           this.x += n;
         }
-        d() {}
-        e() {}
+        e() {return super.e}
         f() {}
+        g() {}
       }
     });
     it('(the subclass) can access methods from the superclass', () => {
       const subClass = new SubClass();
       assert.equal(typeof subClass.__proto__.e, 'function');
       assert.equal(typeof subClass.__proto__.f, 'function');
+      assert.equal(typeof subClass.__proto__.g, 'function');
       assert.equal(typeof subClass.__proto__.__proto__.c, 'function');
       assert.equal(typeof subClass.__proto__.__proto__.d, 'function');
-      assert.equal(typeof subClass.e, 'function');
-      assert.equal(typeof subClass.f, 'function');
+      assert.equal(typeof subClass.__proto__.__proto__.e, 'function');
       assert.equal(typeof subClass.c, 'function');
       assert.equal(typeof subClass.d, 'function');
+      assert.equal(typeof subClass.e, 'function');
+      assert.equal(typeof subClass.f, 'function');
+      assert.equal(typeof subClass.g, 'function');
     });
     it('(the subclass) can override methods from the superclass', () => {
       SubClass.prototype.c = function() {};
@@ -77,10 +82,40 @@ describe('class', () => {
       assert.notEqual(subClass.c, superC);
     });
     it('uses super to access the superclass method', () => {
-      SubClass.prototype.c = function() {
-        assert.equal(typeof this.c, 'function');
-        // assert.notEqual(this.c, super.c);
-      };
+      const subClass = new SubClass();
+      assert.equal(typeof subClass.e, 'function');
+      assert.equal(typeof subClass.e(), 'function');
+      assert.notEqual(subClass.e, subClass.e());
+    });
+    it('(super) calls superclass constructor', () => {
+      const subClass = new SubClass(1);
+      assert.equal(subClass.x, 2);
+    });
+  });
+  describe('static methods', () => {
+    it('(they) can only be invoked by the constructor', () => {
+      let bc = new BasicClass();
+      assert.isUndefined(bc.s);
+      assert.isDefined(BasicClass.s);
+    });
+    it('(their) `this` value is the class', () => {
+      let bc = new BasicClass();
+      assert.equal(BasicClass.s(), BasicClass);
+    });
+    it('(they) can only see static properties', () => {
+      class BasicClass2 {
+        static s1() {return sp}
+        static s2() {return this.sp}
+        static s3() {return BasicClass2.sp}
+        static s4() {return this.i()}
+        i() {return 7}
+      }
+      BasicClass2.sp = 4;
+      let bc = new BasicClass2();
+      assert.throws(BasicClass2.s1, Error);
+      assert.equal(BasicClass2.s2(), 4);
+      assert.equal(BasicClass2.s3(), 4);
+      assert.throws(BasicClass2.s4, Error);
     });
   });
 });
