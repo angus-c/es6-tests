@@ -2,23 +2,8 @@ describe('class', () => {
 
   class EmptyClass {};
   class BasicClass {
-    a() {return this}
+    a() { return this }
     b() {}
-  }
-  class SuperClass {
-    constructor(n) {
-      this.x += n;
-    }
-    c() {}
-    d() {}
-  }
-  class SubClass extends SuperClass{
-    constructor(n) {
-      super(n);
-      this.x += n;
-    }
-    e() {}
-    f() {}
   }
 
   describe('types', () => {
@@ -34,8 +19,8 @@ describe('class', () => {
   });
 
   describe('instances', () => {
-    let ec = new EmptyClass();
-    let bc = new BasicClass();
+    const ec = new EmptyClass();
+    const bc = new BasicClass();
     it('(their) constructor is the class', () => {
       assert.equal(ec.constructor, EmptyClass);
       assert.equal(bc.constructor, BasicClass);
@@ -50,5 +35,52 @@ describe('class', () => {
   });
 
   describe('extends', () => {
+    let SuperClass, SubClass;
+    beforeEach(() => {
+      SuperClass  = class {
+        constructor(n) {
+          this.x += n;
+        }
+        c() {}
+        d() {super.d()}
+      }
+      SubClass = class extends SuperClass{
+        constructor(n) {
+          super(n);
+          this.x += n;
+        }
+        d() {}
+        e() {}
+        f() {}
+      }
+    });
+    it('(the subclass) can access methods from the superclass', () => {
+      const subClass = new SubClass();
+      assert.equal(typeof subClass.__proto__.e, 'function');
+      assert.equal(typeof subClass.__proto__.f, 'function');
+      assert.equal(typeof subClass.__proto__.__proto__.c, 'function');
+      assert.equal(typeof subClass.__proto__.__proto__.d, 'function');
+      assert.equal(typeof subClass.e, 'function');
+      assert.equal(typeof subClass.f, 'function');
+      assert.equal(typeof subClass.c, 'function');
+      assert.equal(typeof subClass.d, 'function');
+    });
+    it('(the subclass) can override methods from the superclass', () => {
+      SubClass.prototype.c = function() {};
+      const subClass = new SubClass();
+      assert.notEqual(subClass.c, subClass.__proto__.__proto__.c);
+    });
+    it('can dynamically override methods from the superclass', () => {
+      const subClass = new SubClass();
+      const superC = subClass.c;
+      SubClass.prototype.c = function() {};
+      assert.notEqual(subClass.c, superC);
+    });
+    it('uses super to access the superclass method', () => {
+      SubClass.prototype.c = function() {
+        assert.equal(typeof this.c, 'function');
+        // assert.notEqual(this.c, super.c);
+      };
+    });
   });
 });
