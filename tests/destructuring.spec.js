@@ -53,7 +53,7 @@ describe('destructuring', () => {
       assert.equal(a, 1);
       assert.isTrue(d);
     });
-    it.skip('assigns deep nested values', () => {
+    it('assigns deep nested values', () => {
       let {a: x, c: {dd: {eee: y}}, d: z} = obj;
       assert.equal(x, 1);
       assert.equal(y, 'hello');
@@ -61,23 +61,55 @@ describe('destructuring', () => {
     });
   });
   describe('with primitives', () => {
-    it('', () => {
+    it('assigns undefined if RHS is primitive', () => {
+      let {x, y, z} = 4;
+      assert.isUndefined(x);
+      assert.isUndefined(y);
+      assert.isUndefined(z);
     });
   });
   describe('with defaults', () => {
-    it('', () => {
+    it('can use defaults', () => {
+      let {a=1, b=2, c=3, d=4} = {b: 3, d: 1};
+      assert.equal(a, 1);
+      assert.equal(b, 3);
+      assert.equal(c, 3);
+      assert.equal(d, 1);
     });
   });
   describe('as', () => {
-    it('', () => {
+    it('can reassign', () => {
+      let a, b, c;
+      let {a:x, b:y, c:z, d} = {a: 2, b: 3, c: 4, d: 1};
+      assert.equal(x, 2);
+      assert.equal(y, 3);
+      assert.equal(z, 4);
+      assert.isUndefined(a);
+      assert.isUndefined(b);
+      assert.isUndefined(c);
+      assert.equal(d, 1);
     });
   });
   describe('in arguments', () => {
-    it('', () => {
-    });
+    it('can be used in arguments', () => {
+      let fn = (i, {a: x, c: {dd: {eee: y}}, d: z}) => {
+        assert.equal(i, 5);
+        assert.equal(x, 1);
+        assert.equal(y, 'hello');
+        assert.equal(z, true);
+      }
+      fn(5, {a: 1, c: {cc: 4, dd: {eee: 'hello'}}, d: true});
+    })
   });
   describe('in for-of', () => {
-    it('', () => {
+    it('can destructure a for-of', () => {
+      let arr = [{a: 4, b: 7}, {a: 8, b: 3}, {a: 6, b: 2}];
+      let count = 0;
+      for (let {a, b} of arr) {
+        assert.equal(a, arr[count].a);
+        assert.equal(b, arr[count].b);
+        count++;
+      }
     });
   });
 });
