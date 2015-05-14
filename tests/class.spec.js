@@ -118,4 +118,37 @@ describe('class', () => {
       assert.throws(BasicClass2.s4, Error);
     });
   });
+
+  describe('dynamism', () => {
+    it('can create unique classes from a template', () => {
+      const classMaker = () => class {
+        a(){}
+        b(){}
+      };
+      const Class1 = classMaker();
+      const Class2 = classMaker();
+      assert.notEqual(Class1, Class2);
+      assert.notEqual(Class1.prototype.a, Class2.prototype.a);
+      assert.notEqual(Class1.prototype.b, Class2.prototype.b);
+    });
+    it('(class) can be created with different super classes', () => {
+      const classMaker = base => class extends base {};
+      const Class1 = classMaker(class {a(){}});
+      const Class2 = classMaker(class {b(){}});
+      assert.notEqual(Class1, Class2);
+      assert.isDefined(Class1.prototype.a);
+      assert.isUndefined(Class1.b);
+      assert.isDefined(Class2.prototype.b);
+      assert.isUndefined(Class2.a);
+    });
+    it('(class) can generate instance methods on the fly', () => {
+      const Class1 = class {a(){}};
+      const class1 = new Class1();
+      assert.equal(class1.a, Class1.prototype.a);
+      assert.isUndefined(class1.b);
+      Class1.prototype.b = () => {};
+      assert.equal(class1.b, Class1.prototype.b);
+      assert.isDefined(class1.b);
+    });
+  });
 });
