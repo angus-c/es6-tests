@@ -6,8 +6,8 @@ describe('Symbols', () => {
     it('has typeof \'symbol\''), () => {
       assert.equal(typeof Symbol('x'), 'symbol');
     }
-    it('has an arity of 1', () => {
-      assert.isTrue(Symbol.length == 1);
+    it.skip('has an arity of 1', () => {
+      assert.equal(Symbol.length, 1);
     });
     it('does not allow `new` with the constructor', () => {
       assert.throws(() => {new Symbol()}, Error);
