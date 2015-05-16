@@ -32,4 +32,39 @@ how are you`, 'hello\n' +
        '4 and 6');
     });
   });
+  describe('tag functions', () => {
+    const a = 3;
+    const b = {x: 4, y: a};
+    it('(its) first arg is an array of the strings literals ', () => {
+      assert.isTrue(Array.isArray(((strs)=>strs)`hello`));
+      assert.equal(((strs)=>strs.length)`hello`, 1);
+      assert.equal(((strs)=>strs[0])`hello`, 'hello');
+      assert.equal(((strs)=>strs.length)`hello ${a}`, 2);
+      assert.equal(((strs)=>strs[0])`hello ${a}`, 'hello ');
+      assert.equal(((strs)=>strs[1])`hello ${a}`, '');
+      assert.equal(((strs)=>strs.length)`hello ${a} goodbye`, 2);
+      assert.equal(((strs)=>strs[0])`hello ${a} goodbye`, 'hello ');
+      assert.equal(((strs)=>strs[1])`hello ${a} goodbye`, ' goodbye');
+    });
+    it('(its) first arg has a `raw` property', () => {
+      assert.isTrue(Array.isArray(((strs)=>strs.raw)`hello`));
+      assert.equal(((strs)=>strs.raw.length)`hello`, 1);
+      assert.equal(((strs)=>strs.raw[0])`hello`, `hello`);
+      assert.equal(((strs)=>strs.raw.length)`hello ${a}`, 2);
+      assert.equal(((strs)=>strs.raw[0])`hello ${a}`, 'hello ');
+      assert.equal(((strs)=>strs.raw[1])`hello ${a}`, '');
+      assert.equal(((strs)=>strs.raw.length)`hel
+lo`, 1);
+      assert.equal(((strs)=>strs.raw[0])`hel
+lo`, 'hel\nlo');
+    });
+    it('(its) remaining args are the interpolated values ', () => {
+      assert.equal(((strs, ...values)=>values.length)`hello`, 0);
+      assert.equal(((strs, ...values)=>values.length)`hello ${a}`, 1);
+      assert.equal(((strs, ...values)=>values[0])`hello ${a}`, 3);
+      assert.equal(((strs, ...values)=>values.length)`hello ${a} goodbye ${b}`, 2);
+      assert.equal(((strs, ...values)=>values[0])`hello ${a} goodbye ${b}`, 3);
+      assert.deepEqual(((strs, ...values)=>values[1])`hello ${a} goodbye ${b}`, {x: 4, y: a});
+    });
+  });
 });
