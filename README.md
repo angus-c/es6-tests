@@ -20,7 +20,7 @@ I'm certainly not trying to compete with the great work of _test262_. This is pu
 
 _There's already an [excellent ES test suite](https://github.com/tc39/test262) Why bother writing another?_
 
-I'm certainly not trying to compete with the great work of _test262_. This is purely to improve my own understanding of the ES6 spec–and I figure writing tests from scratch (with no cribbing) is the best way to achieve that.
+I'm certainly not trying to compete with the great work of _test262_. This is purely to improve my own understanding of the ES6 spec – and I figure writing tests from scratch (with no cribbing) is the best way to achieve that.
 
 _Can I contribute?_
 
