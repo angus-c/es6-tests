@@ -49,7 +49,7 @@ describe('maps', () => {
     it('can be updated using `set`', () => {
       const keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
       const values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      let map = new Map();
+      const map = new Map();
       keys.forEach((key, i) => {
         map.set(key, values[i]);
       });
@@ -62,7 +62,7 @@ describe('maps', () => {
     it('checks if key is present', () => {
       const keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
       const values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      let map = new Map();
+      const map = new Map();
       keys.forEach((key, i) => {
         map.set(key, values[i]);
       });
@@ -159,7 +159,7 @@ describe('maps', () => {
   });
   describe('map.size', () => {
     it('(`map.size`) returns the number of map entries', () => {
-      let map = new Map([['a', 1], ['b', 2]]);
+      const map = new Map([['a', 1], ['b', 2]]);
       assert.equal(map.size, 2);
       map.set('c', 3);
       assert.equal(map.size, 3);
@@ -170,7 +170,7 @@ describe('maps', () => {
       assert.equal(typeof new Map().delete, 'function');
     });
     it('(`map.delete`) deletes the specified key', () => {
-      let map = new Map([['a', 1], ['b', 2]]);
+      const map = new Map([['a', 1], ['b', 2]]);
       assert.equal(map.size, 2);
       assert.isTrue(map.has('a'));
       map.delete('a');
@@ -183,7 +183,7 @@ describe('maps', () => {
       assert.equal(typeof new Map().clear, 'function');
     });
     it('(`map.clear`) empties the map', () => {
-      let map = new Map([['a', 1], ['b', 2]]);
+      const map = new Map([['a', 1], ['b', 2]]);
       assert.equal(map.size, 2);
       map.clear();
       assert.equal(map.size, 0);
