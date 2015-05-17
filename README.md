@@ -24,7 +24,7 @@ I'm certainly not trying to compete with the great work of _test262_. This is pu
 
 _Can I contribute?_
 
-WOuld be really happy to hear about errors (I'm sure there are plenty, and I don't have time to be particularly thorough). However I'm not accepting PRs for entire test modules – I'm doing this for my own education (see above)
+I welcome issues (I'm sure there are plenty of errors, and I don't have time to be particularly thorough). However I'm not accepting PRs for entire test modules, since I'm doing this for my own education (see above)
 
 
 
