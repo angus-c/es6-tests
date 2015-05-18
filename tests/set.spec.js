@@ -13,7 +13,7 @@ describe('sets', () => {
       assert.isDefined(new Set(null));
       assert.isDefined(new Set());
     });
-    it.only('accepts any iterable', () => {
+    it('accepts any iterable', () => {
       const iterables = [
         [1, 3, 4, 3, 6],
         'abcdeffghijklmnopqrtuvwxyz',
@@ -29,165 +29,74 @@ describe('sets', () => {
     });
     it('accepts any value types', () => {
       const iterables = [
+        [1, 2, 3, 4, 8, 8],
         ['a', 1, 'b', 2, 'b'],
         [{}, [], {}, [], [], [], {}],
-        [[true, 1, false, false, 0],
-        [Symbol(4), Symbol[4], Symbol()],
+        [true, 1, false, false, 0],
+        [Symbol(4), Symbol(4), Symbol()]
       ];
-      iterables.forEach((iterable, c) => {
-        const map = new Set(iterable);
-        assert.isDefined(map);
-        [0, 1].forEach((i) => {
-          assert.equal(
-            map.get(keyValueIterables[c][i][0]),
-            keyValueIterables[c][i][1]
-          );
+      iterables.forEach((iterable) => {
+        const set = new Set(iterable);
+        assert.isDefined(set);
+        iterable.forEach((value) => {
+          assert.isTrue(set.has(value));
         });
       });
     });
   });
-  describe('`set` method', () => {
-    it('can be updated using `set`', () => {
-      const keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
-      const values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      const map = new Map();
-      keys.forEach((key, i) => {
-        map.set(key, values[i]);
-      });
-      keys.forEach((key, i) => {
-        assert.equal(map.get(keys[i]), values[i]);
-      });
+  describe('set.add', () => {
+    it ('is a method', () => {
+      const set = new Set();
+      assert.isDefined(set.add);
+      assert.equal(typeof set.add, 'function');
     });
-  });
-  describe('`has` method', () => {
-    it('checks if key is present', () => {
-      const keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
-      const values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      const map = new Map();
-      keys.forEach((key, i) => {
-        map.set(key, values[i]);
-      });
-      keys.forEach((key, i) => {
-        assert.isTrue(map.has(keys[i]));
-      });
-    });
-  });
-  describe('map.keys()', () => {
-    let map, keys, values;
-    beforeEach(() => {
-      keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
-      values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      map = new Map();
-      keys.forEach((key, i) => {
-        map.set(key, values[i]);
-      });
-    });
-    it('defines `keys`', () => {
-      assert.equal(typeof map.keys, 'function');
-    });
-    it('(`map.keys`) is an iterator', () => {
-      const keysIt = map.keys();
-      assert.isDefined(keysIt.next);
-      keys.forEach((key) => {
-        assert.equal(keysIt.next().value, key);
-      });
-    });
-  });
-  describe('map.values()', () => {
-    let map, keys, values;
-    beforeEach(() => {
-      keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
-      values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      map = new Map();
-      keys.forEach((key, i) => {
-        map.set(key, values[i]);
-      });
-    });
-    it('defines `values`', () => {
-      assert.equal(typeof map.values, 'function');
-    });
-    it('(`map.values`) is an iterator', () => {
-      const valuesIt = map.values();
-      assert.isDefined(valuesIt.next);
-      values.forEach((value) => {
-        assert.equal(valuesIt.next().value, value);
-      });
-    });
-  });
-  describe('map.entries()', () => {
-    let map, keys, values;
-    beforeEach(() => {
-      keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
-      values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      map = new Map();
-      keys.forEach((key, i) => {
-        map.set(key, values[i]);
-      });
-    });
-    it('defines `entries`', () => {
-      assert.equal(typeof map.entries, 'function');
-    });
-    it('(`map.entries`) is an iterator', () => {
-      const entriesIt = map.entries();
-      assert.isDefined(entriesIt.next);
-      keys.forEach((key, i) => {
-        assert.sameMembers(entriesIt.next().value, [key, values[i]]);
-      });
-    });
-  });
-  describe('map.forEach', () => {
-    let map, keys, values;
-    beforeEach(() => {
-      keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
-      values = [1, 'a', false, Symbol(), new Date(), {}, []];
-      map = new Map();
-      keys.forEach((key, i) => {
-        map.set(key, values[i]);
-      });
-    });
-    it('defines `forEach`', () => {
-      assert.equal(typeof map.forEach, 'function');
-    });
-    it('(`map.forEach`) loops through the entries', () => {
+    it ('adds values to a set', () => {
+      const set = new Set();
+      const values = [1, 5, 5, 5, 4, 3, 2, 6, 4, 3, 6, 3, 3];
       let count = 0;
-      map.forEach((value, key, mapp) => {
-        assert.equal(value, values[count]);
-        assert.equal(key, keys[count]);
-        assert.equal(mapp, map);
+      values.forEach(value => {
         count++;
+        set.add(value);
       });
+      assert.equal(count, values.length);
+      assert.equal(set.size, 6);
     });
   });
-  describe('map.size', () => {
-    it('(`map.size`) returns the number of map entries', () => {
-      const map = new Map([['a', 1], ['b', 2]]);
-      assert.equal(map.size, 2);
-      map.set('c', 3);
-      assert.equal(map.size, 3);
+  describe('`size` and deduping', () => {
+    it('defines `size`', () => {
+      const set = new Set([1,3,2,2]);
+      assert.isDefined(set.size);
+      assert.equal(typeof set.size, 'number');
     });
-  });
-  describe('map.delete()', () => {
-    it('defines `delete`', () => {
-      assert.equal(typeof new Map().delete, 'function');
-    });
-    it('(`map.delete`) deletes the specified key', () => {
-      const map = new Map([['a', 1], ['b', 2]]);
-      assert.equal(map.size, 2);
-      assert.isTrue(map.has('a'));
-      map.delete('a');
-      assert.equal(map.size, 1);
-      assert.isFalse(map.has('a'));
-    });
-  });
-  describe('map.clear()', () => {
-    it('defines `clear`', () => {
-      assert.equal(typeof new Map().clear, 'function');
-    });
-    it('(`map.clear`) empties the map', () => {
-      const map = new Map([['a', 1], ['b', 2]]);
-      assert.equal(map.size, 2);
-      map.clear();
-      assert.equal(map.size, 0);
+    it('removes duplicate values', () => {
+      const obj = {}, arr = [];
+      const sym1 = Symbol(), sym2 = Symbol();
+      const iterables = [
+        {
+          value: [1, 2, 3, 4, 8, 8],
+          unique: 5
+        },
+        {
+          value: 'abcdeffghijklmnopqrstuvwxyz',
+          unique: 26
+        },
+        {
+          value: [obj, arr, arr, arr, obj],
+          unique: 2
+        },
+        {
+          value: [true, 1, false, false, 0],
+          unique: 4
+        },
+        {
+          value: [sym1, sym1, sym2],
+          unique: 2
+        }
+      ];
+      iterables.forEach((iterable) => {
+        const set = new Set(iterable.value);
+        assert.equal(set.size, iterable.unique);
+      });
     });
   });
 });
