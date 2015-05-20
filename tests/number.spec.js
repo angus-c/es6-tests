@@ -28,6 +28,20 @@ describe('new number features', () => {
       assert.isFalse(Number.isInteger('q'));
       assert.isFalse(Number.isInteger(NaN));
     });
+    it("has Number.isSafeInteger", () => {
+      const safe1 = Math.pow(2, 53) - 1;
+      const unsafe1 = Math.pow(2, 53);
+      const safe2 = 1 - Math.pow(2, 53);
+      const unsafe2 = -Math.pow(2, 53);
+      assert.isTrue(Number.isSafeInteger(safe1));
+      assert.isFalse(Number.isSafeInteger(unsafe1));
+      assert.isTrue(Number.isSafeInteger(safe2));
+      assert.isFalse(Number.isSafeInteger(unsafe2));
+      assert.isTrue(Number.isSafeInteger(7));
+      assert.isFalse(Number.isSafeInteger(7.1));
+      assert.isTrue(Number.isSafeInteger(0));
+      assert.isFalse(Number.isSafeInteger(1/4));
+    });
   });
   describe('new static values', () => {
     it("defines Number.EPSILON", () => {
@@ -37,6 +51,13 @@ describe('new number features', () => {
       assert.isTrue((0.3 - (0.2 + 0.1)) < Number.EPSILON);
       assert.isTrue((0.3 - (0.2 + 0.1)) > -Number.EPSILON);
     });
+    it("defines Number.MAX_SAFE_INTEGER", () => {
+      assert.isDefined(Number.MAX_SAFE_INTEGER);
+      assert.equal(Number.MAX_SAFE_INTEGER, Math.pow(2, 53)-1);
+    });
+    it("defines Number.MIN_SAFE_INTEGER", () => {
+      assert.isDefined(Number.MIN_SAFE_INTEGER);
+      assert.equal(Number.MIN_SAFE_INTEGER, 1-Math.pow(2, 53));
+    });
   });
-
 });
