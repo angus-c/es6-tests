@@ -17,7 +17,6 @@ describe('weak sets', () => {
       const iterables = [
         [[], {}, ()=>{}],
         new Set([[], {}, ()=>{}]),
-        [[], {}, ()=>{}].keys(),
         [[], {}, ()=>{}].entries(),
       ];
       iterables.forEach((iterable) => {
@@ -39,7 +38,7 @@ describe('weak sets', () => {
     });
     it('does not accept primitive value types', () => {
       assert.throws(() => {
-        const set = new WeakSet([[1, false, 'a']])}, Error);
+        new WeakSet([1, false, 'a'])}, Error);
     });
   //   it('accepts any type of values', () => {
   //     const keyValueIterables = [
