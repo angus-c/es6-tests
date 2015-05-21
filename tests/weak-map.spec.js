@@ -115,4 +115,9 @@ describe('weak maps', () => {
       assert.isFalse(weakMap.has(key1));
     });
   });
+  describe('transient keys', () => {
+    it('(its) keys are GCed when they have no other refs', () => {
+      // untestable
+    });
+  });
 });

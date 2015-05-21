@@ -53,12 +53,12 @@ describe('sets', () => {
     it ('adds values to a set', () => {
       const set = new Set();
       const values = [1, 5, 5, 5, 4, 3, 2, 6, 4, 3, 6, 3, 3];
-      let count = 0;
       values.forEach(value => {
-        count++;
         set.add(value);
       });
-      assert.equal(count, values.length);
+      values.forEach(value => {
+        assert.isTrue(set.has(value));
+      });
       assert.equal(set.size, 6);
     });
   });
