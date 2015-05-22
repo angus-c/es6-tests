@@ -24,7 +24,7 @@ describe('ES6 Array.prototype methods', () => {
     });
     it('honors the `this` context', () => {
       assert.equal(
-        arr.find(function(e) {return this.sqrt(e) == 2}, Math),
+        arr.find(function (e) {return this.sqrt(e) == 2}, Math),
         4
       );
     });
@@ -37,7 +37,7 @@ describe('ES6 Array.prototype methods', () => {
     });
     it('honors the `this` context', () => {
       assert.equal(
-        arr.findIndex(function(e) {return this.sqrt(e) == 2}, Math),
+        arr.findIndex(function (e) {return this.sqrt(e) == 2}, Math),
         4
       );
     });
@@ -54,7 +54,7 @@ describe('ES6 Array.prototype methods', () => {
       let arrKeys = arr.keys();
       let i = 0;
       for (let key of arrKeys) {
-        assert.isTrue(key == i++)
+        assert.isTrue(key == i++);
       }
     });
   });
@@ -70,7 +70,7 @@ describe('ES6 Array.prototype methods', () => {
       let arrValues = arr.values();
       let i = 0;
       for (let value of arrValues) {
-        assert.isTrue(value == arr[i++])
+        assert.isTrue(value == arr[i++]);
       }
     });
   });
@@ -98,5 +98,4 @@ describe('ES6 Array.prototype methods', () => {
       assert.sameMembers(arr.copyWithin([1, 2, 'f', 3, 4]), [1, 3, 'f', 3, 4]);
     });
   });
-
 });

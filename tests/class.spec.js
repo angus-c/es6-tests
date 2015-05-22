@@ -9,13 +9,13 @@ describe('class', () => {
 
   describe('types', () => {
     it('is a constructor', () => {
-      assert.equal(typeof EmptyClass, "function");
-      assert.equal(typeof EmptyClass.prototype, "object");
+      assert.equal(typeof EmptyClass, 'function');
+      assert.equal(typeof EmptyClass.prototype, 'object');
       assert.equal(EmptyClass.prototype.constructor, EmptyClass);
     });
     it('\'s methods go on the prototype', () => {
-      assert.equal(typeof BasicClass.prototype.a, "function");
-      assert.equal(typeof BasicClass.prototype.b, "function");
+      assert.equal(typeof BasicClass.prototype.a, 'function');
+      assert.equal(typeof BasicClass.prototype.b, 'function');
     });
   });
 
@@ -99,7 +99,6 @@ describe('class', () => {
       assert.isDefined(BasicClass.s);
     });
     it('(their) `this` value is the class', () => {
-      let bc = new BasicClass();
       assert.equal(BasicClass.s(), BasicClass);
     });
     it('(they) can only see static properties', () => {
@@ -111,7 +110,6 @@ describe('class', () => {
         i() {return 7}
       }
       BasicClass2.sp = 4;
-      let bc = new BasicClass2();
       assert.throws(BasicClass2.s1, Error);
       assert.equal(BasicClass2.s2(), 4);
       assert.equal(BasicClass2.s3(), 4);
@@ -122,8 +120,8 @@ describe('class', () => {
   describe('dynamism', () => {
     it('can create unique classes from a template', () => {
       const classMaker = () => class {
-        a(){}
-        b(){}
+        a() {}
+        b() {}
       };
       const Class1 = classMaker();
       const Class2 = classMaker();
@@ -133,8 +131,8 @@ describe('class', () => {
     });
     it('(class) can be created with different super classes', () => {
       const classMaker = base => class extends base {};
-      const Class1 = classMaker(class {a(){}});
-      const Class2 = classMaker(class {b(){}});
+      const Class1 = classMaker(class {a() {}});
+      const Class2 = classMaker(class {b() {}});
       assert.notEqual(Class1, Class2);
       assert.isDefined(Class1.prototype.a);
       assert.isUndefined(Class1.b);
@@ -142,7 +140,7 @@ describe('class', () => {
       assert.isUndefined(Class2.a);
     });
     it('(class) can generate instance methods on the fly', () => {
-      const Class1 = class {a(){}};
+      const Class1 = class {a() {}};
       const class1 = new Class1();
       assert.equal(class1.a, Class1.prototype.a);
       assert.isUndefined(class1.b);

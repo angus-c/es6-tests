@@ -16,9 +16,9 @@ describe('weak sets', () => {
     });
     it('accepts any non-primitive iterable type', () => {
       const iterables = [
-        [[], {}, ()=>{}],
-        new Set([[], {}, ()=>{}]),
-        [[], {}, ()=>{}].entries(),
+        [[], {}, () => {}],
+        new Set([[], {}, () => {}]),
+        [[], {}, () => {}].entries()
       ];
       iterables.forEach((iterable) => {
         assert.isDefined(new WeakSet(iterable));

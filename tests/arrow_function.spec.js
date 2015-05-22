@@ -25,7 +25,6 @@ describe('arrow functions', () => {
       fn = (a, b) => a + b;
       assert.equal(fn(13, 2), 15);
     });
-
   });
 
   describe('`this` value', () => {

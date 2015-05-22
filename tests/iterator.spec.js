@@ -1,13 +1,13 @@
 // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-operations-on-iterator-objects
 describe('iterators', () => {
   const arrayLikeIterables = [
-    [1,2,3],
+    [1, 2, 3],
     'abc',
-    Array.from({a:4, b:5, c:8})
+    Array.from({a: 4, b: 5, c: 8})
   ];
   const mapLikeIterables = [
-    [1,2,3].keys(),
-    [1,2,3].entries(),
+    [1, 2, 3].keys(),
+    [1, 2, 3].entries(),
     new Map([[1, 'one'], [2, 'two']]),
     new Set([1, 2, 2, 4])/*,
     document.body */
@@ -23,7 +23,7 @@ describe('iterators', () => {
       allIterables.forEach((iterable) => {
         assert.isObject(iterable[Symbol.iterator]());
       });
-      (()=>{assert.isObject(arguments[Symbol.iterator]());})(1,2,3);
+      (() => {assert.isObject(arguments[Symbol.iterator]());})(1, 2, 3);
     });
   });
 

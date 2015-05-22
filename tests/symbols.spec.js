@@ -1,6 +1,5 @@
-https://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol-objects
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol-objects
 describe('Symbols', () => {
-
   describe('data type', () => {
     it('has typeof \'symbol\''), () => {
       assert.equal(typeof Symbol('x'), 'symbol');
@@ -35,7 +34,7 @@ describe('Symbols', () => {
     it('can be used as an object key', () => {
       let a = Symbol('a')
       let obj = {
-        a: 3,
+        a: 3
       };
       obj[a] = 4;
       assert.equal(obj.a, 3);

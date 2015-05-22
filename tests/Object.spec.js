@@ -4,7 +4,7 @@ describe('ES6 Object constructor methods', () => {
   beforeEach(() => {
     obj = {
       a: 47,
-      b: {c:4},
+      b: {c: 4},
       c: true
     };
   });
@@ -13,15 +13,15 @@ describe('ES6 Object constructor methods', () => {
   describe('Object.assign', () => {
     it('extends existing object', () => {
       expect(Object.assign(obj, {d: 4})).to.eql(
-          {a: 47, b: {c:4}, c: true, d:4});
+          {a: 47, b: {c: 4}, c: true, d: 4});
     });
     it('clobbers existing properties', () => {
-      expect(Object.assign(obj, {b: {c:5}})).to.eql(
-          {a: 47, b: {c:5}, c: true});
+      expect(Object.assign(obj, {b: {c: 5}})).to.eql(
+          {a: 47, b: {c: 5}, c: true});
     });
     it('accepts multiple sources', () => {
-      expect(Object.assign(obj, {b: {c:5}}, {d:4})).to.eql(
-          {a: 47, b: {c:5}, c: true, d: 4});
+      expect(Object.assign(obj, {b: {c: 5}}, {d: 4})).to.eql(
+          {a: 47, b: {c: 5}, c: true, d: 4});
     });
   });
 
@@ -42,15 +42,15 @@ describe('ES6 Object constructor methods', () => {
   // http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.setprototypeof
   describe('Object.setPrototypeOf', () => {
     it('sets prototype of plain object', () => {
-      Object.setPrototypeOf(obj, {d:8});
-      expect(Object.getPrototypeOf(obj)).to.eql({d:8});
+      Object.setPrototypeOf(obj, {d: 8});
+      expect(Object.getPrototypeOf(obj)).to.eql({d: 8});
       assert.equal(obj.d, 8);
     });
     it('replaces prototype of object with custom prototype', () => {
-      Object.setPrototypeOf(obj, {d:8});
-      expect(Object.getPrototypeOf(obj)).to.eql({d:8});
-      Object.setPrototypeOf(obj, {e:12});
-      expect(Object.getPrototypeOf(obj)).to.eql({e:12});
+      Object.setPrototypeOf(obj, {d: 8});
+      expect(Object.getPrototypeOf(obj)).to.eql({d: 8});
+      Object.setPrototypeOf(obj, {e: 12});
+      expect(Object.getPrototypeOf(obj)).to.eql({e: 12});
       assert.equal(obj.e, 12);
       assert.isUndefined(obj.d);
     });

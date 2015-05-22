@@ -3,22 +3,22 @@ describe('enhanced literals', () => {
   describe('shortcuts', () => {
     it('supports all shortcuts', () => {
       const a = 1, b = 2;
-      assert.deepEqual({a, b}, {a:1, b:2});
+      assert.deepEqual({a, b}, {a: 1, b: 2});
     });
     it('supports shortcuts mixed with regular assignments', () => {
       const a = 1;
-      assert.deepEqual({a, b:2}, {a:1, b:2});
+      assert.deepEqual({a, b: 2}, {a: 1, b: 2});
     });
   });
   describe('computed keys', () => {
     it('supports simple string aggregation', () => {
-      assert.deepEqual({['a' + 'b']: 36},{ab: 36});
-      assert.deepEqual({[['a', 'b'].join('')]: 36},{ab: 36});
+      assert.deepEqual({['a' + 'b']: 36}, {ab: 36});
+      assert.deepEqual({[['a', 'b'].join('')]: 36}, {ab: 36});
     });
     it('supports variable substitution', () => {
       const x = 'ant', y = 'bee';
-      assert.deepEqual({[x]: 36, [y]: 79},{ant: 36, bee: 79});
-      assert.deepEqual({[x + y]: 36, [y]: 79},{antbee: 36, bee: 79});
+      assert.deepEqual({[x]: 36, [y]: 79}, {ant: 36, bee: 79});
+      assert.deepEqual({[x + y]: 36, [y]: 79}, {antbee: 36, bee: 79});
     });
     it('supports function return values', () => {
       const fn = (a, b) => '_' + a + a + b;

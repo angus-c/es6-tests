@@ -5,7 +5,7 @@ describe('defaults', () => {
   const _b = false;
   const _sym = Symbol.for('y');
   const _o = {r: 5};
-  const _a = [0,6,5];
+  const _a = [0, 6, 5];
 
   it('can assign values of type', () => {
     const fn = (

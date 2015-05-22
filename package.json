@@ -25,6 +25,8 @@
     "babel-core": "^5.1.11",
     "babel-loader": "^5.0.0",
     "babel-runtime": "^5.1.13",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0",
     "karma": "^0.12.31",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.8",

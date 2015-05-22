@@ -7,15 +7,15 @@ describe('generators', () => {
     });
 
     it.skip('function* is a function keyword', () => {
-      assert.equal(typeof function* (){}, 'function');
+      assert.equal(typeof function * () {}, 'function');
     });
   });
 
   describe('yield', () => {
     it('exits the function', () => {
       let x = 0;
-      const g = (function* (){
-        while(true) {
+      const g = (function* () {
+        while (true) {
           x++;
           yield;
         }
@@ -27,7 +27,7 @@ describe('generators', () => {
     it('exits the function with the given value', () => {
       let x = 0;
       const g = (function* (){
-        while(true) {
+        while (true) {
           x++;
           yield 7;
         }
@@ -39,7 +39,7 @@ describe('generators', () => {
     it('maintains lcoal state between calls', () => {
       let x = 0, y;
       const g = (function* (){
-        while(true) {
+        while (true) {
           x++;
           if (x == 1) {
             y = 8;
@@ -58,7 +58,7 @@ describe('generators', () => {
     it('yields while valid loop', () => {
       let x = 0;
       const g = (function* (){
-        while(x < 2) {
+        while (x < 2) {
           x++;
           yield;
         }
@@ -72,7 +72,7 @@ describe('generators', () => {
 
     it('delegates to another generator', () => {
       function* gf(y = 0) {
-        while(true) {
+        while (true) {
           x -= 10;
           x += y;
           yield;
@@ -81,7 +81,7 @@ describe('generators', () => {
 
       let x = 0;
       const g1 = (function* (){
-        while(true) {
+        while (true) {
           x++;
           yield* gf();
           yield;
@@ -92,7 +92,7 @@ describe('generators', () => {
 
       x = 0;
       const g2 = (function* (){
-        while(true) {
+        while (true) {
           x++;
           yield* gf(4);
           yield;
@@ -107,7 +107,7 @@ describe('generators', () => {
     it('iterates over the generator', () => {
       let x = 0;
       const g = function* () {
-        while(true) {
+        while (true) {
           x++;
           yield x;
         }
@@ -120,9 +120,8 @@ describe('generators', () => {
         }
         tally += val;
       }
-      assert.equal(tally, 1+2+3+4+5);
+      assert.equal(tally, 1 + 2 + 3 + 4 + 5);
     });
   });
 });
-
 

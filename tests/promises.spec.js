@@ -3,8 +3,8 @@ describe('Promises', () => {
   function getPromise(success) {
     return new Promise((resolve, reject) => {
       setTimeout(
-        success ? resolve('success'): reject('failure'),
-        (Math.random()+1)*1000
+        success ? resolve('success') : reject('failure'),
+        (Math.random() + 1) * 1000
       );
     });
   }

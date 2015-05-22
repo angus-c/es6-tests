@@ -20,9 +20,9 @@ describe('sets', () => {
         'abcdeffghijklmnopqrtuvwxyz',
         new Map([['a', 1], ['b', 2], ['a', 1], ['c', 5]]),
         new Set([1, 3, 4, 3, 6]),
-        Array.from({a:4, b:5, c:8}),
-        [1,2,3].keys(),
-        [1,2,3].entries(),
+        Array.from({a: 4, b: 5, c: 8}),
+        [1, 2, 3].keys(),
+        [1, 2, 3].entries()
       ];
       iterables.forEach((iterable) => {
         assert.isDefined(new Set(iterable));
@@ -46,12 +46,12 @@ describe('sets', () => {
     });
   });
   describe('set.add', () => {
-    it ('is a method', () => {
+    it('is a method', () => {
       const set = new Set();
       assert.isDefined(set.add);
       assert.equal(typeof set.add, 'function');
     });
-    it ('adds values to a set', () => {
+    it('adds values to a set', () => {
       const set = new Set();
       const values = [1, 5, 5, 5, 4, 3, 2, 6, 4, 3, 6, 3, 3];
       values.forEach(value => {
@@ -65,7 +65,7 @@ describe('sets', () => {
   });
   describe('`size` and de-duping', () => {
     it('defines `size`', () => {
-      const set = new Set([1,3,2,2]);
+      const set = new Set([1, 3, 2, 2]);
       assert.isDefined(set.size);
       assert.equal(typeof set.size, 'number');
     });
@@ -101,7 +101,7 @@ describe('sets', () => {
     });
   });
   describe('forEach', () => {
-    const set = new Set([1,3,2,2]);
+    const set = new Set([1, 3, 2, 2]);
     const asArray = [...set];
     let count = 0;
     it('is a valid function', () => {
@@ -119,7 +119,7 @@ describe('sets', () => {
     });
   });
   describe('keys, values and entries', () => {
-    const set = new Set([1,3,2,2]);
+    const set = new Set([1, 3, 2, 2]);
     const asArray = [...set];
     it('(they) are valid functions', () => {
       assert.isDefined(set.keys);
