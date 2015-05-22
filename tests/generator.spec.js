@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generator-objects
 describe('generators', () => {
   describe('types', () => {
     it.skip('(GeneratorFunction) is a constructor', () => {

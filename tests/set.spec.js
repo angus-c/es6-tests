@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-set-objects
 describe('sets', () => {
   describe('types', () => {
     it('(Set) is a constructor', () => {

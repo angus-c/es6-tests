@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-operations-on-iterator-objects
 describe('iterators', () => {
   const arrayLikeIterables = [
     [1,2,3],

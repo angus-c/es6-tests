@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-objects
 describe('enhanced literals', () => {
   describe('shortcuts', () => {
     it('supports all shortcuts', () => {

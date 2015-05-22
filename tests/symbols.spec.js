@@ -1,7 +1,6 @@
 https://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol-objects
 describe('Symbols', () => {
 
-  // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-ecmascript-language-types-symbol-type
   describe('data type', () => {
     it('has typeof \'symbol\''), () => {
       assert.equal(typeof Symbol('x'), 'symbol');

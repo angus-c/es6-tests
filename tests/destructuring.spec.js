@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-destructuring-assignment
 describe('destructuring', () => {
   let array1 = [1, 3, 5, 2, 4];
   let array2 = [{a: 4, b: true}, [1, 2], undefined, false, 'c'];

@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-definitions
 describe('defaults', () => {
   const _n = 2;
   const _s = '3';

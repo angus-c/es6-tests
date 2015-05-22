@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-map-objects
 describe('maps', () => {
   describe('types', () => {
     it('(Map) is a constructor', () => {

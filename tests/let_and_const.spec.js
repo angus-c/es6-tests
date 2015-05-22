@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations
 describe('let and const', () => {
   describe('scoping', () => {
     it('(they) are scoped once per block', () => {

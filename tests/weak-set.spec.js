@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-weakset-objects
 describe('weak sets', () => {
   describe('types', () => {
     it('(WeakSet) is a constructor', () => {

@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-static-semantics-tv-s-and-trv-s
 describe('template strings', () => {
   describe('basic strings', () => {
     it('generates a string', () => {

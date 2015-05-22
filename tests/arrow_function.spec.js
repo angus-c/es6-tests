@@ -61,5 +61,8 @@ describe('arrow functions', () => {
     it('is not a constructor', () => {
       assert.throw(() => new (x => x*x), Error);
     });
+    it('is has no `arguments` object', () => {
+      (() => assert.isUndefined(arguments))();
+    });
   });
 });

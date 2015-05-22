@@ -1,5 +1,5 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-class-definitions
 describe('class', () => {
-
   class EmptyClass {};
   class BasicClass {
     static s() {return this}

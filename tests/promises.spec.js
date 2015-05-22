@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-objects
 describe('Promises', () => {
   function getPromise(success) {
     return new Promise((resolve, reject) => {
@@ -92,7 +93,7 @@ describe('Promises', () => {
     });
 
     it('resolves succesful promise after it\'s been settled', (done) => {
-      let p = getPromise(true);
+      const p = getPromise(true);
       assert.isTrue(succeeded);
       p.then((msg) => {
         assert.equal(msg, 'success');
@@ -101,7 +102,7 @@ describe('Promises', () => {
     });
 
     it('rejects failed promise after it\'s been settled', (done) => {
-      let p = getPromise(false);
+      const p = getPromise(false);
       assert.isTrue(failed);
       p.then(null, (msg) => {
         assert.equal(msg, 'failure');
@@ -110,7 +111,7 @@ describe('Promises', () => {
     });
 
     it('enters catch block after failed promise has been settled', (done) => {
-      let p = getPromise(false);
+      const p = getPromise(false);
       assert.isTrue(failed);
       p.then().catch(function(err){
         assert.equal(err, 'failure');
@@ -122,7 +123,7 @@ describe('Promises', () => {
   describe('chained `thens`', () => {
   });
 
-  describe('Promises.all', () => {
+  describe('Promise.all', () => {
     let r;
     Promise.all(['a', 'b', 'c']).then((arr) => {
       r = arr.map(t=>t+'1')
@@ -131,8 +132,16 @@ describe('Promises', () => {
     assert.isUndefined(r);
   });
 
-  describe('Promises.race', () => {
+  describe('Promise.race', () => {
+    const p1 = new Promise(function(resolve, reject) {
+      setTimeout(() => resolve('p1 resolved'), 300);
+    });
+    const p2 = new Promise(function(resolve, reject) {
+      setTimeout(() => resolve('p2 resolved'), 100);
+    });
+    Promise.race([p1, p2]).then(data => {
+      assert.equal(data, 'p2 resolved');
+    });
   });
-
 });
 

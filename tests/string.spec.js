@@ -1,4 +1,5 @@
 describe('new string features', () => {
+  // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-source-text
   describe('new unicode features', () => {
     it("supports new escape syntax", () => {
       // surrogate pair and real unicode for a fish
@@ -10,6 +11,7 @@ describe('new string features', () => {
     });
   });
   describe('new introspect features', () => {
+    // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.startswith
     it("supports startsWith", () => {
       assert.isTrue('panda'.startsWith('p'));
       assert.isTrue('panda'.startsWith('panda'));
@@ -17,6 +19,7 @@ describe('new string features', () => {
       assert.isFalse('panda'.startsWith('q'));
       assert.isTrue('\uD83D\uDC20'.startsWith('\u{1F420}'));
     });
+    // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.endswith
     it("supports endsWith", () => {
       assert.isTrue('panda'.endsWith('a'));
       assert.isTrue('panda'.endsWith('panda'));
@@ -24,6 +27,7 @@ describe('new string features', () => {
       assert.isFalse('panda'.endsWith('q'));
       assert.isTrue('\uD83D\uDC20'.endsWith('\u{1F420}'));
     });
+    // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.includes
     it.skip("supports includes", () => {
       assert.isTrue('panda'.includes('p'));
       assert.isTrue('panda'.includes('n'));
@@ -34,6 +38,7 @@ describe('new string features', () => {
       assert.isTrue('\uD83D\uDC20'.includes('\u{1F420}'));
     });
   });
+  // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.repeat
   describe('repeat', () => {
     it("supports repeat", () => {
       assert.equal('panda'.repeat(3), 'pandapandapanda');

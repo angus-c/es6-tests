@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-object-constructor
 describe('ES6 Object constructor methods', () => {
   let obj;
   beforeEach(() => {

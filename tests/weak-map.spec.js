@@ -1,3 +1,4 @@
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-weakmap-objects
 describe('weak maps', () => {
   describe('types', () => {
     it('(WeakMap) is a constructor', () => {
