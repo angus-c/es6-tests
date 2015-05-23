@@ -45,7 +45,4 @@ describe('new Math features', () => {
       assert.closeTo(Math.atanh(0.5), 0.5493, 0.0001);
     });
   });
-  describe('the properties', () => {
-
-  });
 });
