@@ -30,35 +30,39 @@ describe('arrow functions', () => {
   describe('`this` value', () => {
     it('observes lexical `this` binding', () => {
       let obj = {
-        outerFn: () => {
+        fn1() {
           assert.equal(obj, this);
-          fn = () => {
+          let fn2 = () => {
             assert.equal(obj, this);
+            [1, 2, 3].forEach(() => {
+              assert.equal(obj, this);
+            });
           };
-          return fn();
+          return fn2();
         }
       }
+      obj.fn1();
     });
     it('will not allow call/apply/bind to change `this`', () => {
       let obj = {
-        outerFn: () => {
-          fn = () => {
-            return this;
-          };
-          assert.equal(fn.call({}), obj);
-          assert.equal(fn.apply({}), obj);
-          assert.equal(fn.bind({})(), obj);
+        fn1() {
+          assert.equal(obj, this);
+          let fn2 = () => this;
+          assert.equal(fn2.call({}), obj);
+          assert.equal(fn2.apply({}), obj);
+          assert.equal(fn2.bind({})(), obj);
         }
       }
+      obj.fn1();
     });
   });
 
   describe.skip('an arrow function is not a full function', () => {
     it('has no prototype', () => {
-      assert.isUndefined((x => x*x).prototype);
+      assert.isUndefined((x => x * x).prototype);
     });
     it('is not a constructor', () => {
-      assert.throw(() => new (x => x*x), Error);
+      assert.throw(() => new (x => x * x), Error);
     });
     it('is has no `arguments` object', () => {
       (() => assert.isUndefined(arguments))();
