@@ -28,7 +28,7 @@
     "eqeqeq": 0,
     "func-names": 0,
     "func-style": [0, "declaration"],
-    "generator-star-spacing": [2, "both"],
+    "generator-star-spacing": [2, "after"],
     "guard-for-in": 0,
     "handle-callback-err": [2, "^(err|error|anySpecificError)$" ],
     "indent": [2, 2],

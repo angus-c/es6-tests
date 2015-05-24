@@ -7,7 +7,7 @@ describe('generators', () => {
     });
 
     it.skip('function* is a function keyword', () => {
-      assert.equal(typeof function * () {}, 'function');
+      assert.equal(typeof function* () {}, 'function');
     });
   });
 
@@ -26,7 +26,7 @@ describe('generators', () => {
 
     it('exits the function with the given value', () => {
       let x = 0;
-      const g = (function* (){
+      const g = (function* () {
         while (true) {
           x++;
           yield 7;
@@ -38,7 +38,7 @@ describe('generators', () => {
 
     it('maintains lcoal state between calls', () => {
       let x = 0, y;
-      const g = (function* (){
+      const g = (function* () {
         while (true) {
           x++;
           if (x == 1) {
@@ -57,7 +57,7 @@ describe('generators', () => {
 
     it('yields while valid loop', () => {
       let x = 0;
-      const g = (function* (){
+      const g = (function* () {
         while (x < 2) {
           x++;
           yield;
@@ -80,7 +80,7 @@ describe('generators', () => {
       }
 
       let x = 0;
-      const g1 = (function* (){
+      const g1 = (function* () {
         while (true) {
           x++;
           yield* gf();
@@ -91,7 +91,7 @@ describe('generators', () => {
       assert.equal(x, -9);
 
       x = 0;
-      const g2 = (function* (){
+      const g2 = (function* () {
         while (true) {
           x++;
           yield* gf(4);

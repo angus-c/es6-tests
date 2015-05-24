@@ -33,7 +33,6 @@ describe('destructuring', () => {
       [...rest] = array1;
       assert.sameMembers(rest, [1, 3, 5, 2, 4]);
     });
-
   });
   describe('objects', () => {
     let obj = {
