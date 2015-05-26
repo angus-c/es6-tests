@@ -70,7 +70,7 @@ describe('destructuring', () => {
   });
   describe('with defaults', () => {
     it('can use defaults', () => {
-      let {a=1, b=2, c=3, d=4} = {b: 3, d: 1};
+      let {a = 1, b = 2, c = 3, d = 4} = {b: 3, d: 1};
       assert.equal(a, 1);
       assert.equal(b, 3);
       assert.equal(c, 3);
@@ -80,7 +80,7 @@ describe('destructuring', () => {
   describe('as', () => {
     it('can reassign', () => {
       let a, b, c;
-      let {a:x, b:y, c:z, d} = {a: 2, b: 3, c: 4, d: 1};
+      let {a: x, b: y, c: z, d} = {a: 2, b: 3, c: 4, d: 1};
       assert.equal(x, 2);
       assert.equal(y, 3);
       assert.equal(z, 4);
@@ -113,5 +113,3 @@ describe('destructuring', () => {
     });
   });
 });
-
-
