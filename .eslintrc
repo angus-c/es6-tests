@@ -102,7 +102,7 @@
     "no-plusplus": 0,
     "no-process-env": 0,
     "no-process-exit": 0,
-    "no-proto": 2,
+    "no-proto": 0,
     "no-redeclare": 2,
     "no-regex-spaces": 2,
     "no-reserved-keys": 0,

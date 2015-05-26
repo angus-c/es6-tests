@@ -7,15 +7,18 @@ describe('class', () => {
     b() {}
   }
 
-  describe('types', () => {
+  describe('types and properties', () => {
     it('is a constructor', () => {
       assert.equal(typeof EmptyClass, 'function');
       assert.equal(typeof EmptyClass.prototype, 'object');
       assert.equal(EmptyClass.prototype.constructor, EmptyClass);
     });
-    it('\'s methods go on the prototype', () => {
+    it('\'s dynamic methods go on the prototype', () => {
       assert.equal(typeof BasicClass.prototype.a, 'function');
       assert.equal(typeof BasicClass.prototype.b, 'function');
+    });
+    it('\'s static methods go on the constructor', () => {
+      assert.equal(typeof BasicClass.s, 'function');
     });
   });
 
@@ -38,7 +41,7 @@ describe('class', () => {
   describe('extends', () => {
     let SuperClass, SubClass;
     beforeEach(() => {
-      SuperClass  = class {
+      SuperClass = class {
         constructor(n) {
           this.x = n;
         }
@@ -71,14 +74,14 @@ describe('class', () => {
       assert.equal(typeof subClass.g, 'function');
     });
     it('(the subclass) can override methods from the superclass', () => {
-      SubClass.prototype.c = function() {};
+      SubClass.prototype.c = function () {};
       const subClass = new SubClass();
       assert.notEqual(subClass.c, subClass.__proto__.__proto__.c);
     });
     it('can dynamically override methods from the superclass', () => {
       const subClass = new SubClass();
       const superC = subClass.c;
-      SubClass.prototype.c = function() {};
+      SubClass.prototype.c = function () {};
       assert.notEqual(subClass.c, superC);
     });
     it('uses super to access the superclass method', () => {
@@ -96,6 +99,7 @@ describe('class', () => {
     it('(they) can only be invoked by the constructor', () => {
       let bc = new BasicClass();
       assert.isUndefined(bc.s);
+      assert.isUndefined(BasicClass.prototype.s);
       assert.isDefined(BasicClass.s);
     });
     it('(their) `this` value is the class', () => {
