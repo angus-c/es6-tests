@@ -20,7 +20,6 @@ describe('sets', () => {
         'abcdeffghijklmnopqrtuvwxyz',
         new Map([['a', 1], ['b', 2], ['a', 1], ['c', 5]]),
         new Set([1, 3, 4, 3, 6]),
-        Array.from({a: 4, b: 5, c: 8}),
         [1, 2, 3].keys(),
         [1, 2, 3].entries()
       ];

@@ -98,4 +98,33 @@ describe('ES6 Array.prototype methods', () => {
       assert.sameMembers(arr.copyWithin([1, 2, 'f', 3, 4]), [1, 3, 'f', 3, 4]);
     });
   });
+
+  // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
+  describe('Array.from', () => {
+    it('converts array-like objects to arrays', () => {
+      const arrayLikeObjects = [
+        {value: 'mickey mouse', length: 12},
+        {value: new Map([[true, 99], [false, window]]), length: 2},
+        {value: new Set([1, 'a', 'a', 4]), length: 3},
+        {value: (function () {return arguments})([1, 2], 6, 7, /$[0-9]*/), length: 4}
+      ]
+      arrayLikeObjects.forEach((obj) => {
+        let array = Array.from(obj.value);
+        assert.isTrue(Array.isArray(array));
+        assert.equal(array.length, obj.length);
+      });
+    });
+    it('supports predicates', () => {
+      const arr = new Array(5);
+      arr[0] = 'x';
+      arr[1] = 'y';
+      arr[3] = 'z';
+      let filled = Array.from(arr, e => e || '*');
+      assert.sameMembers(filled, ['x', 'y', '*', 'z', '*']);
+      assert.sameMembers(Array.from({length: 3}, (e, i) => i), [0, 1, 2]);
+      // TODO: more tests
+    });
+    it('honors the `this` argument', () => {
+    });
+  });
 });

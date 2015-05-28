@@ -2,8 +2,7 @@
 describe('iterators', () => {
   const arrayLikeIterables = [
     [1, 2, 3],
-    'abc',
-    Array.from({a: 4, b: 5, c: 8})
+    'abc'
   ];
   const mapLikeIterables = [
     [1, 2, 3].keys(),
