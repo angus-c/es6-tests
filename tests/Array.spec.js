@@ -137,5 +137,23 @@ describe('new array methods', () => {
         assert.sameMembers(Array.from([1, 4, 9], sqrt, Math), [1, 2, 3]);
       });
     });
+    describe('Array.of', () => {
+      it('creates a new array using the given arguments', () => {
+        const argsData = [
+          [1, 2, 3],
+          [3],
+          ['fox', 'rabbit', 'wolf'],
+          [{}, [], {}],
+          [undefined]
+        ]
+        for (let args of argsData) {
+          let arr = Array.of(...args);
+          assert.equal(arr.length, args.length);
+          args.forEach((arg, i) => {
+            assert.equal(arr[i], arg);
+          });
+        }
+      });
+    });
   });
 });
