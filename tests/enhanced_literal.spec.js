@@ -5,6 +5,7 @@ describe('enhanced literals', () => {
       const a = 1, b = 2;
       assert.deepEqual({a, b}, {a: 1, b: 2});
     });
+
     it('supports shortcuts mixed with regular assignments', () => {
       const a = 1;
       assert.deepEqual({a, b: 2}, {a: 1, b: 2});
@@ -15,11 +16,13 @@ describe('enhanced literals', () => {
       assert.deepEqual({['a' + 'b']: 36}, {ab: 36});
       assert.deepEqual({[['a', 'b'].join('')]: 36}, {ab: 36});
     });
+
     it('supports variable substitution', () => {
       const x = 'ant', y = 'bee';
       assert.deepEqual({[x]: 36, [y]: 79}, {ant: 36, bee: 79});
       assert.deepEqual({[x + y]: 36, [y]: 79}, {antbee: 36, bee: 79});
     });
+
     it('supports function return values', () => {
       const fn = (a, b) => '_' + a + a + b;
       assert.deepEqual(
@@ -27,6 +30,7 @@ describe('enhanced literals', () => {
         {_xxy: 36, _boobooboo: 79}
       );
     });
+
     it('coerces non-strings', () => {
       assert.deepEqual(
         {[{toString: ()=>'hello'}]: 36, [true]: 79},
@@ -43,12 +47,13 @@ describe('enhanced literals', () => {
       };
       assert.equal(helloer.hi(), 'hello');
     });
+
     it('can mix old and new method syntax', () => {
       const helloer = {
         hi() {
           return 'hello'
         },
-        grin: function() {
+        grin: function () {
           return 'smile'
         }
       };
@@ -67,6 +72,7 @@ describe('enhanced literals', () => {
       assert.equal(thing.do(), 'superDo');
       assert.isUndefined(thing.constructor.prototype.do);
     });
+
     it('supports super', () => {
       const thing = {
         do() {

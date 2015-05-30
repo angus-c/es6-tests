@@ -5,6 +5,7 @@ describe('weak maps', () => {
       assert.equal(typeof WeakMap, 'function');
       assert.isDefined(WeakMap.prototype);
     });
+
     it('(weak map instance) is an object', () => {
       assert.equal(typeof new WeakMap(), 'object');
     });
@@ -14,6 +15,7 @@ describe('weak maps', () => {
       assert.isDefined(new WeakMap(null));
       assert.isDefined(new WeakMap());
     });
+
     it('accepts any key-value iterable', () => {
       const keyValueIterables = [
         [[{}, 1], [[], 2]],
@@ -24,6 +26,7 @@ describe('weak maps', () => {
         assert.isDefined(new WeakMap(iterable));
       });
     });
+
     it('accepts any type of values', () => {
       const keyValueIterables = [
         [[{}, 1], [[], 2]],
@@ -45,6 +48,7 @@ describe('weak maps', () => {
         });
       });
     });
+
     it('accepts any type of object as key', () => {
       const keyValueIterables = [
         [[{}, 1], [new Date(), 1]],
@@ -55,6 +59,7 @@ describe('weak maps', () => {
         [[new WeakMap(), 1], [new Set(), 1]],
         [[new Date(), 1], [new WeakMap(), 1]]
       ];
+
       keyValueIterables.forEach((iterable, c) => {
         const weakMap = new WeakMap(iterable);
         assert.isDefined(weakMap);
@@ -66,17 +71,20 @@ describe('weak maps', () => {
         });
       });
     });
+
     it('does not accept primitives as keys', () => {
       const keyValueIterables = [
         [[1, 1], [2, 1]],
         [['a', 1], ['b', 1]],
         [[true, 1], [false, 1]],
       ];
+
       keyValueIterables.forEach((iterable, c) => {
         assert.throws(()=>{const weakMap = new WeakMap(iterable)}, Error);
       });
     });
   });
+
   describe('`set` method', () => {
     it('can be updated using `set`', () => {
       const keys = [{}, [], ()=>{}, new Map(), new Set(), new WeakMap(), new Date()];
@@ -90,6 +98,7 @@ describe('weak maps', () => {
       });
     });
   });
+
   describe('`has` method', () => {
     it('checks if key is present', () => {
       const keys = [{}, [], ()=>{}, new Map(), new Set(), new WeakMap(), new Date()];
@@ -103,10 +112,12 @@ describe('weak maps', () => {
       });
     });
   });
+
   describe('weakMap.delete()', () => {
     it('defines `delete`', () => {
       assert.equal(typeof new WeakMap().delete, 'function');
     });
+
     it('(`weakMap.delete`) deletes the specified key', () => {
       const key1 = {};
       const key2 = {};
@@ -116,6 +127,7 @@ describe('weak maps', () => {
       assert.isFalse(weakMap.has(key1));
     });
   });
+
   describe('transient keys', () => {
     it('(its) keys are GCed when they have no other refs', () => {
       // untestable

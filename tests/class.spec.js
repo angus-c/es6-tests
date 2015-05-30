@@ -13,10 +13,12 @@ describe('class', () => {
       assert.equal(typeof EmptyClass.prototype, 'object');
       assert.equal(EmptyClass.prototype.constructor, EmptyClass);
     });
+
     it('\'s dynamic methods go on the prototype', () => {
       assert.equal(typeof BasicClass.prototype.a, 'function');
       assert.equal(typeof BasicClass.prototype.b, 'function');
     });
+
     it('\'s static methods go on the constructor', () => {
       assert.equal(typeof BasicClass.s, 'function');
     });
@@ -33,6 +35,7 @@ describe('class', () => {
       assert.equal(bc.__proto__.a, BasicClass.prototype.a);
       assert.equal(bc.__proto__.b, BasicClass.prototype.b);
     });
+
     it('\'s value is `this` when calling prototype methods', () => {
       assert.equal(bc.a(), bc);
     });
@@ -59,6 +62,7 @@ describe('class', () => {
         g() {}
       }
     });
+
     it('(the subclass) can access methods from the superclass', () => {
       const subClass = new SubClass();
       assert.equal(typeof subClass.__proto__.e, 'function');
@@ -73,23 +77,27 @@ describe('class', () => {
       assert.equal(typeof subClass.f, 'function');
       assert.equal(typeof subClass.g, 'function');
     });
+
     it('(the subclass) can override methods from the superclass', () => {
       SubClass.prototype.c = function () {};
       const subClass = new SubClass();
       assert.notEqual(subClass.c, subClass.__proto__.__proto__.c);
     });
+
     it('can dynamically override methods from the superclass', () => {
       const subClass = new SubClass();
       const superC = subClass.c;
       SubClass.prototype.c = function () {};
       assert.notEqual(subClass.c, superC);
     });
+
     it('uses super to access the superclass method', () => {
       const subClass = new SubClass();
       assert.equal(typeof subClass.e, 'function');
       assert.equal(typeof subClass.e(), 'function');
       assert.notEqual(subClass.e, subClass.e());
     });
+
     it('(super) calls superclass constructor', () => {
       const subClass = new SubClass(1);
       assert.equal(subClass.x, 2);
@@ -102,9 +110,11 @@ describe('class', () => {
       assert.isUndefined(BasicClass.prototype.s);
       assert.isDefined(BasicClass.s);
     });
+
     it('(their) `this` value is the class', () => {
       assert.equal(BasicClass.s(), BasicClass);
     });
+
     it('(they) can only see static properties', () => {
       class BasicClass2 {
         static s1() {return sp}
@@ -133,6 +143,7 @@ describe('class', () => {
       assert.notEqual(Class1.prototype.a, Class2.prototype.a);
       assert.notEqual(Class1.prototype.b, Class2.prototype.b);
     });
+
     it('(class) can be created with different super classes', () => {
       const classMaker = base => class extends base {};
       const Class1 = classMaker(class {a() {}});
@@ -143,6 +154,7 @@ describe('class', () => {
       assert.isDefined(Class2.prototype.b);
       assert.isUndefined(Class2.a);
     });
+
     it('(class) can generate instance methods on the fly', () => {
       const Class1 = class {a() {}};
       const class1 = new Class1();

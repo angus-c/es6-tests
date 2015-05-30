@@ -16,6 +16,7 @@ describe('Promises', () => {
       assert.isTrue(new Promise((res, rej) => {}) instanceof Promise);
       assert.equal(typeof new Promise((res, rej) => {}), 'object');
     });
+
     it('requires a function argument', () => {
       assert.throws(() => new Promise(), Error);
       assert.doesNotThrow(() => new Promise((res, rej) => {}));

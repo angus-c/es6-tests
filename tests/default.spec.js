@@ -25,6 +25,7 @@ describe('defaults', () => {
     };
     fn();
   });
+
   it('can assign via reference', () => {
     const fn = (
       a = _n,
@@ -43,6 +44,7 @@ describe('defaults', () => {
     };
     fn();
   });
+
   it('only assigns if argument not past', () => {
     const fn = (
       a = _n,
@@ -61,6 +63,7 @@ describe('defaults', () => {
     };
     fn(7, '8', true, 'not a symbol', {h: 1}, 73);
   });
+
   it('can be assigned via destructure', () => {
     const fn = (
       [a, b, c, d, {e, f}] = [_n, _s, _b, _sym, {e: _o, f: _a}]

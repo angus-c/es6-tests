@@ -4,9 +4,11 @@ describe('Symbols', () => {
     it('has typeof \'symbol\''), () => {
       assert.equal(typeof Symbol('x'), 'symbol');
     }
+
     it.skip('has an arity of 1', () => {
       assert.equal(Symbol.length, 1);
     });
+
     it('does not allow `new` with the constructor', () => {
       assert.throws(() => {new Symbol()}, Error);
     });
@@ -17,6 +19,7 @@ describe('Symbols', () => {
       assert.isTrue(Symbol() !== Symbol());
       assert.isTrue(Symbol() != Symbol());
     });
+
     it('is unique with same description', () => {
       assert.isTrue(Symbol('x') !== Symbol('x'));
       assert.isTrue(Symbol('x') != Symbol('x'));
@@ -66,8 +69,10 @@ describe('Symbols', () => {
   describe('other qualities', () => {
     it('is iterable', () => {
     });
+
     it('is matchable', () => {
     });
+
     it('is replaceable', () => {
     });
   });

@@ -5,11 +5,13 @@ describe('new string features', () => {
       // surrogate pair and real unicode for a fish
       assert.equal('\uD83D\uDC20', '\u{1F420}');
     });
+
     it('supports codePointAt', () => {
       assert.equal('abc'.codePointAt(1).toString(16), '62');
       assert.equal('\uD83D\uDC20'.codePointAt(0).toString(16), '1f420');
     });
   });
+
   describe('new introspect features', () => {
     // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.startswith
     it('supports startsWith', () => {
@@ -19,6 +21,7 @@ describe('new string features', () => {
       assert.isFalse('panda'.startsWith('q'));
       assert.isTrue('\uD83D\uDC20'.startsWith('\u{1F420}'));
     });
+
     // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.endswith
     it('supports endsWith', () => {
       assert.isTrue('panda'.endsWith('a'));
@@ -27,6 +30,7 @@ describe('new string features', () => {
       assert.isFalse('panda'.endsWith('q'));
       assert.isTrue('\uD83D\uDC20'.endsWith('\u{1F420}'));
     });
+
     // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.includes
     it.skip('supports includes', () => {
       assert.isTrue('panda'.includes('p'));
@@ -38,6 +42,7 @@ describe('new string features', () => {
       assert.isTrue('\uD83D\uDC20'.includes('\u{1F420}'));
     });
   });
+
   // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.repeat
   describe('repeat', () => {
     it('supports repeat', () => {

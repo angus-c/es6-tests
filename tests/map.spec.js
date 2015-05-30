@@ -5,15 +5,18 @@ describe('maps', () => {
       assert.equal(typeof Map, 'function');
       assert.isDefined(Map.prototype);
     });
+
     it('(map instance) is an object', () => {
       assert.equal(typeof new Map(), 'object');
     });
   });
+
   describe('constructor parameter', () => {
     it('accepts null or nothing', () => {
       assert.isDefined(new Map(null));
       assert.isDefined(new Map());
     });
+
     it('accepts any key-value iterable', () => {
       const keyValueIterables = [
         [['a', 1], ['b', 2]],
@@ -24,6 +27,7 @@ describe('maps', () => {
         assert.isDefined(new Map(iterable));
       });
     });
+
     it('accepts any types as keys or values', () => {
       const keyValueIterables = [
         [['a', 1], ['b', 2]],
@@ -46,6 +50,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('`set` method', () => {
     it('can be updated using `set`', () => {
       const keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
@@ -59,6 +64,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('`has` method', () => {
     it('checks if key is present', () => {
       const keys = [{}, [], 1, 'a', false, Symbol(), new Date()];
@@ -72,6 +78,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('map.keys()', () => {
     let map, keys, values;
     beforeEach(() => {
@@ -82,9 +89,11 @@ describe('maps', () => {
         map.set(key, values[i]);
       });
     });
+
     it('defines `keys`', () => {
       assert.equal(typeof map.keys, 'function');
     });
+
     it('(`map.keys`) is an iterator', () => {
       const keysIt = map.keys();
       assert.isDefined(keysIt.next);
@@ -93,6 +102,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('map.values()', () => {
     let map, keys, values;
     beforeEach(() => {
@@ -103,9 +113,11 @@ describe('maps', () => {
         map.set(key, values[i]);
       });
     });
+
     it('defines `values`', () => {
       assert.equal(typeof map.values, 'function');
     });
+
     it('(`map.values`) is an iterator', () => {
       const valuesIt = map.values();
       assert.isDefined(valuesIt.next);
@@ -114,6 +126,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('map.entries()', () => {
     let map, keys, values;
     beforeEach(() => {
@@ -124,9 +137,11 @@ describe('maps', () => {
         map.set(key, values[i]);
       });
     });
+
     it('defines `entries`', () => {
       assert.equal(typeof map.entries, 'function');
     });
+
     it('(`map.entries`) is an iterator', () => {
       const entriesIt = map.entries();
       assert.isDefined(entriesIt.next);
@@ -135,6 +150,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('map.forEach', () => {
     let map, keys, values;
     beforeEach(() => {
@@ -145,9 +161,11 @@ describe('maps', () => {
         map.set(key, values[i]);
       });
     });
+
     it('defines `forEach`', () => {
       assert.equal(typeof map.forEach, 'function');
     });
+
     it('(`map.forEach`) loops through the entries', () => {
       let count = 0;
       map.forEach((value, key, mapp) => {
@@ -158,6 +176,7 @@ describe('maps', () => {
       });
     });
   });
+
   describe('map.size', () => {
     it('(`map.size`) returns the number of map entries', () => {
       const map = new Map([['a', 1], ['b', 2]]);
@@ -166,10 +185,12 @@ describe('maps', () => {
       assert.equal(map.size, 3);
     });
   });
+
   describe('map.delete()', () => {
     it('defines `delete`', () => {
       assert.equal(typeof new Map().delete, 'function');
     });
+
     it('(`map.delete`) deletes the specified key', () => {
       const map = new Map([['a', 1], ['b', 2]]);
       assert.equal(map.size, 2);
@@ -179,10 +200,12 @@ describe('maps', () => {
       assert.isFalse(map.has('a'));
     });
   });
+
   describe('map.clear()', () => {
     it('defines `clear`', () => {
       assert.equal(typeof new Map().clear, 'function');
     });
+
     it('(`map.clear`) empties the map', () => {
       const map = new Map([['a', 1], ['b', 2]]);
       assert.equal(map.size, 2);

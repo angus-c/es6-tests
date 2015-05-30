@@ -5,6 +5,7 @@ describe('template strings', () => {
       assert.equal(typeof `hello`, 'string');
       assert.equal(`hello`, 'hello');
     });
+
     it('can be multiline', () => {
       assert.equal(typeof `hello
 how are you`, 'string');
@@ -21,6 +22,7 @@ how are you`, 'hello\n' +
       assert.equal(`the ${c} price is ${a} dollars and ${b} cents`,
        'the true price is 3 dollars and fifty cents');
     });
+
     it('can insert object variables', () => {
       const a = {toString: () => 'an object'};
       const b = [1, 2, 3];
@@ -28,6 +30,7 @@ how are you`, 'hello\n' +
       assert.equal(`${a} and ${b}`,
        'an object and an array');
     });
+
     it('can insert expressions', () => {
       assert.equal(`${2**2} and ${((a, b)=>3 + a/b)(6, 2)}`,
        '4 and 6');
@@ -36,6 +39,7 @@ how are you`, 'hello\n' +
   describe('tag functions', () => {
     const a = 3;
     const b = {x: 4, y: a};
+
     it('(its) first arg is an array of the strings literals ', () => {
       assert.isTrue(Array.isArray(((strs)=>strs)`hello`));
       assert.equal(((strs)=>strs.length)`hello`, 1);
@@ -47,6 +51,7 @@ how are you`, 'hello\n' +
       assert.equal(((strs)=>strs[0])`hello ${a} goodbye`, 'hello ');
       assert.equal(((strs)=>strs[1])`hello ${a} goodbye`, ' goodbye');
     });
+
     it('(its) first arg has a `raw` property', () => {
       assert.isTrue(Array.isArray(((strs)=>strs.raw)`hello`));
       assert.equal(((strs)=>strs.raw.length)`hello`, 1);
@@ -59,6 +64,7 @@ lo`, 1);
       assert.equal(((strs)=>strs.raw[0])`hel
 lo`, 'hel\nlo');
     });
+
     it('(its) remaining args are the interpolated values ', () => {
       assert.equal(((strs, ...values)=>values.length)`hello`, 0);
       assert.equal(((strs, ...values)=>values.length)`hello ${a}`, 1);

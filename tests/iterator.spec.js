@@ -15,9 +15,11 @@ describe('iterators', () => {
 
   describe('Symbol.iterator', () => {
     const s = Symbol.iterator;
+
     it.skip('is a symbol', () => {
       assert.equal(typeof s, 'symbol');
     });
+
     it('(allIterables) have a `Symbol.iterator` method', () => {
       allIterables.forEach((iterable) => {
         assert.isObject(iterable[Symbol.iterator]());
@@ -28,6 +30,7 @@ describe('iterators', () => {
 
   describe('next()', () => {
     let iterator, next, count;
+
     it('works with for arrayLikeIterables', () => {
       arrayLikeIterables.forEach((iterable) => {
         iterator = iterable[Symbol.iterator]();
@@ -38,6 +41,7 @@ describe('iterators', () => {
         }
       });
     });
+
     it('works with for mapLikeIterables', () => {
       mapLikeIterables.forEach((iterable) => {
         let toArray = [...iterable];
@@ -49,6 +53,7 @@ describe('iterators', () => {
         }
       });
     });
+
     it('returns done when no more items', () => {
       allIterables.forEach((iterable) => {
         iterator = iterable[Symbol.iterator]();
@@ -68,6 +73,7 @@ describe('iterators', () => {
         }
       });
     });
+
     it('works for mapLikeIterables', () => {
       mapLikeIterables.forEach((iterable) => {
         let toArray = [...iterable];
@@ -83,5 +89,3 @@ describe('iterators', () => {
     });
   });
 });
-
-

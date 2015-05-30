@@ -5,6 +5,7 @@ describe('sets', () => {
       assert.equal(typeof Set, 'function');
       assert.isDefined(Set.prototype);
     });
+
     it('(set instance) is an object', () => {
       assert.equal(typeof new Set(), 'object');
     });
@@ -14,6 +15,7 @@ describe('sets', () => {
       assert.isDefined(new Set(null));
       assert.isDefined(new Set());
     });
+
     it('accepts any iterable', () => {
       const iterables = [
         [1, 3, 4, 3, 6],
@@ -27,6 +29,7 @@ describe('sets', () => {
         assert.isDefined(new Set(iterable));
       });
     });
+
     it('accepts any value types', () => {
       const iterables = [
         [1, 2, 3, 4, 8, 8],
@@ -44,12 +47,14 @@ describe('sets', () => {
       });
     });
   });
+
   describe('set.add', () => {
     it('is a method', () => {
       const set = new Set();
       assert.isDefined(set.add);
       assert.equal(typeof set.add, 'function');
     });
+
     it('adds values to a set', () => {
       const set = new Set();
       const values = [1, 5, 5, 5, 4, 3, 2, 6, 4, 3, 6, 3, 3];
@@ -62,12 +67,14 @@ describe('sets', () => {
       assert.equal(set.size, 6);
     });
   });
+
   describe('`size` and de-duping', () => {
     it('defines `size`', () => {
       const set = new Set([1, 3, 2, 2]);
       assert.isDefined(set.size);
       assert.equal(typeof set.size, 'number');
     });
+
     it('removes duplicate values', () => {
       const obj = {}, arr = [];
       const sym1 = Symbol(), sym2 = Symbol();
@@ -99,14 +106,17 @@ describe('sets', () => {
       });
     });
   });
+
   describe('forEach', () => {
     const set = new Set([1, 3, 2, 2]);
     const asArray = [...set];
     let count = 0;
+
     it('is a valid function', () => {
       assert.isDefined(set.forEach);
       assert.equal(typeof set.forEach, 'function');
     });
+
     it('loops over each member', () => {
       set.forEach((value1, value2, theSet) => {
         assert.equal(value1, asArray[count]);
@@ -120,6 +130,7 @@ describe('sets', () => {
   describe('keys, values and entries', () => {
     const set = new Set([1, 3, 2, 2]);
     const asArray = [...set];
+
     it('(they) are valid functions', () => {
       assert.isDefined(set.keys);
       assert.isDefined(set.values);
@@ -128,6 +139,7 @@ describe('sets', () => {
       assert.equal(typeof set.values, 'function');
       assert.equal(typeof set.entries, 'function');
     });
+
     it('(keys and values) both iterate over the members', () => {
       const keysIt = set.keys();
       const valuesIt = set.values();
@@ -138,6 +150,7 @@ describe('sets', () => {
         assert.equal(next.value, asArray[count++]);
       }
     });
+
     it('(entires) is a matching key-value pair', () => {
       const entriesIt = set.entries();
       let next, count = 0;
@@ -152,6 +165,7 @@ describe('sets', () => {
     it('defines `delete`', () => {
       assert.equal(typeof new Set().delete, 'function');
     });
+
     it('(`set.delete`) deletes the specified key', () => {
       const set = new Set([1, 5, 5, 6, 8]);
       assert.equal(set.size, 4);
@@ -165,6 +179,7 @@ describe('sets', () => {
     it('defines `clear`', () => {
       assert.equal(typeof new Set().clear, 'function');
     });
+
     it('(`set.clear`) empties the set', () => {
       const set = new Set([1, 5, 5, 6, 8]);
       assert.equal(set.size, 4);

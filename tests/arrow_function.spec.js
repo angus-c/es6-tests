@@ -6,6 +6,7 @@ describe('arrow functions', () => {
       fn = x => x * x;
       assert.equal(fn(4), 16);
     });
+
     it('needs braces and return for multi statement', () => {
       fn = x => {x++; x * x};
       assert.equal(fn(4), undefined);
@@ -19,6 +20,7 @@ describe('arrow functions', () => {
       fn = x => x * x;
       assert.equal(fn(4), 16);
     });
+
     it('does need parens for no or many params', () => {
       fn = () => 5;
       assert.equal(fn(), 5);
@@ -61,9 +63,11 @@ describe('arrow functions', () => {
     it('has no prototype', () => {
       assert.isUndefined((x => x * x).prototype);
     });
+
     it('is not a constructor', () => {
       assert.throw(() => new (x => x * x), Error);
     });
+
     it('is has no `arguments` object', () => {
       (() => assert.isUndefined(arguments))();
     });

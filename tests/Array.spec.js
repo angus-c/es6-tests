@@ -10,9 +10,11 @@ describe('new array methods', () => {
       it('replaces all members', () => {
         assert.sameMembers(arr.fill(3), [3, 3, 3, 3, 3]);
       });
+
       it('replaces the members up to an index', () => {
         assert.sameMembers(arr.fill(5, 2), ['a', 17, 5, 5, 5]);
       });
+
       it('replaces the members between indices', () => {
         assert.sameMembers(arr.fill(5, 2, 3), ['a', 17, 5, '30', 4]);
       });
@@ -23,6 +25,7 @@ describe('new array methods', () => {
       it('finds the item', () => {
         assert.equal(arr.find(Number), 17);
       });
+
       it('honors the `this` context', () => {
         assert.equal(
           arr.find(function (e) {return this.sqrt(e) == 2}, Math),
@@ -36,6 +39,7 @@ describe('new array methods', () => {
       it('finds the index', () => {
         assert.equal(arr.findIndex(Number), 1);
       });
+
       it('honors the `this` context', () => {
         assert.equal(
           arr.findIndex(function (e) {return this.sqrt(e) == 2}, Math),
@@ -51,6 +55,7 @@ describe('new array methods', () => {
       it.skip('returns an iterator', () => {
         assert.isDefined(arr.keys()[[Symbol.iterator]]);
       });
+
       it('iterates over the keys', () => {
         let arrKeys = arr.keys();
         let i = 0;
@@ -67,6 +72,7 @@ describe('new array methods', () => {
       it('returns an iterator', () => {
         assert.isDefined(arr.values()[[Symbol.iterator]]);
       });
+
       it('iterates over the values', () => {
         let arrValues = arr.values();
         let i = 0;
@@ -80,9 +86,11 @@ describe('new array methods', () => {
     // See iterator.spec for more thorough iterator tests
     describe('Array.prototype.entries', () => {
       const arr = [7, 8, 9];
+
       it.skip('returns an iterator', () => {
         assert.isDefined(arr.entries()[[Symbol.iterator]]);
       });
+
       it('iterates over the key value pairs', () => {
         let arrKeyValuePairs = arr.entries();
         let i = 0;
@@ -117,6 +125,7 @@ describe('new array methods', () => {
           assert.equal(array.length, obj.length);
         });
       });
+
       it('supports predicates', () => {
         const arr = new Array(5);
         arr[0] = 'x', arr[1] = 'y', arr[3] = 'z';
@@ -132,11 +141,13 @@ describe('new array methods', () => {
         assert.sameMembers(Array.from({length: 3}, (e, i) => i), [0, 1, 2]);
         assert.sameMembers(Array.from('cow', e => e.toUpperCase()), ['C', 'O', 'W']);
       });
+
       it('honors the `this` argument', () => {
         const sqrt = function (e) {return this.sqrt(e)}
         assert.sameMembers(Array.from([1, 4, 9], sqrt, Math), [1, 2, 3]);
       });
     });
+
     describe('Array.of', () => {
       it('creates a new array using the given arguments', () => {
         const argsData = [

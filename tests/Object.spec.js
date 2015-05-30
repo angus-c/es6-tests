@@ -15,10 +15,12 @@ describe('ES6 Object constructor methods', () => {
       expect(Object.assign(obj, {d: 4})).to.eql(
           {a: 47, b: {c: 4}, c: true, d: 4});
     });
+
     it('clobbers existing properties', () => {
       expect(Object.assign(obj, {b: {c: 5}})).to.eql(
           {a: 47, b: {c: 5}, c: true});
     });
+
     it('accepts multiple sources', () => {
       expect(Object.assign(obj, {b: {c: 5}}, {d: 4})).to.eql(
           {a: 47, b: {c: 5}, c: true, d: 4});
@@ -31,9 +33,11 @@ describe('ES6 Object constructor methods', () => {
       assert.isTrue(Object.is(3, 3));
       assert.isFalse(Object.is('3', 3));
     });
+
     it('treats NaNs as equal', () => {
       assert.isTrue(Object.is(NaN, NaN));
     });
+
     it('treats 0 and -0 as unequal', () => {
       assert.isFalse(Object.is(0, -0));
     });
@@ -46,6 +50,7 @@ describe('ES6 Object constructor methods', () => {
       expect(Object.getPrototypeOf(obj)).to.eql({d: 8});
       assert.equal(obj.d, 8);
     });
+
     it('replaces prototype of object with custom prototype', () => {
       Object.setPrototypeOf(obj, {d: 8});
       expect(Object.getPrototypeOf(obj)).to.eql({d: 8});

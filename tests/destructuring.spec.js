@@ -17,6 +17,7 @@ describe('destructuring', () => {
       assert.isFalse(i);
       assert.equal(j, 'c');
     });
+
     it('assigns to named variables only', () => {
       let [c, d] = array1;
       assert.equal(c, 1);
@@ -26,6 +27,7 @@ describe('destructuring', () => {
       assert.equal(f, 2);
       assert.equal(g, 4);
     });
+
     it('assigns to rest variables', () => {
       let [a, ...rest] = array1;
       assert.equal(a, 1);
@@ -41,6 +43,7 @@ describe('destructuring', () => {
       c: {cc: 4, dd: {eee: 'hello'}},
       d: true
     }
+
     it('assigns top level keys', () => {
       let {a, b, c, d} = obj;
       assert.equal(a, 1);
@@ -48,11 +51,13 @@ describe('destructuring', () => {
       assert.deepEqual(c, {cc: 4, dd: {eee: 'hello'}});
       assert.isTrue(d);
     });
+
     it('assigns selected keys', () => {
       let {a, d} = obj;
       assert.equal(a, 1);
       assert.isTrue(d);
     });
+
     it('assigns deep nested values', () => {
       let {a: x, c: {dd: {eee: y}}, d: z} = obj;
       assert.equal(x, 1);

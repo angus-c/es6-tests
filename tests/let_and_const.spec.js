@@ -52,7 +52,7 @@ describe('let and const', () => {
       assert.equal(x.b, 9);
     });
 
-    // it.skip('is not reassignable', () => {
+    // it('is not reassignable', () => {
     //   const x = {a: 4};
     //   expect(() => {x = {a: 7}}).to.throw(Error);
     //   expect(() => {x = 'a cake'}).to.throw(Error);
