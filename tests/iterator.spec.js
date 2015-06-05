@@ -22,10 +22,10 @@ describe('iterators', () => {
 
     it('(allIterables) have a `Symbol.iterator` method', () => {
       allIterables.forEach((iterable) => {
-        assert.isObject(iterable[Symbol.iterator]());
+        assert.equal(typeof iterable[Symbol.iterator](), 'object');
       });
       (function () {
-        assert.isObject(arguments[Symbol.iterator]());
+        assert.equal(typeof arguments[Symbol.iterator](), 'object');
       })(1, 2, 3);
     });
   });
