@@ -24,7 +24,9 @@ describe('iterators', () => {
       allIterables.forEach((iterable) => {
         assert.isObject(iterable[Symbol.iterator]());
       });
-      (() => {assert.isObject(arguments[Symbol.iterator]());})(1, 2, 3);
+      (function () {
+        assert.isObject(arguments[Symbol.iterator]());
+      })(1, 2, 3);
     });
   });
 
